@@ -1,55 +1,51 @@
 function placeOrder() {
-  // Show summary as soon as user interacts
-  document.getElementById("orderSummary").style.display = "block";
+    // Reveal the summary
+    document.getElementById("orderSummary").style.display = "block";
 
-  // Select Elements
-  var uname = document.getElementById("txtName").value;
-  var mobile = document.getElementById("txtMobile").value;
+    // Data Fetching
+    const name = document.getElementById("txtName").value;
+    const mobile = document.getElementById("txtMobile").value;
+    
+    const burger = document.getElementById("optBurger");
+    const spRoll = document.getElementById("optSproll");
+    const fries = document.getElementById("optfries");
+    const coke = document.getElementById("optcoke");
+    const mirinda = document.getElementById("optmirinda");
 
-  var burger = document.getElementById("optBurger");
-  var springRoll = document.getElementById("optSproll");
-  var fries = document.getElementById("optfries");
+    let subtotal = 0;
+    let mealName = [];
+    let addons = [];
 
-  var coke = document.getElementById("optcoke");
-  var mirinda = document.getElementById("optmirinda");
+    // 1. Meal Selection
+    if (burger.checked) { subtotal += 120; mealName.push("Burger"); }
+    if (spRoll.checked) { subtotal += 80; mealName.push("Spring Roll"); }
+    if (fries.checked) { subtotal += 50; mealName.push("Fries"); }
 
-  var totalCost = 0;
-  var mealName = "None Selected";
-  var addonsList = "";
+    // 2. Add-ons Selection
+    if (coke.checked) { subtotal += 30; addons.push("Coke"); }
+    if (mirinda.checked) { subtotal += 30; addons.push("Mirinda"); }
 
-  // 1. Calculate Meal Cost (Radio Buttons)
-  if (burger.checked) {
-    totalCost = 120;
-    mealName = "Burger";
-  } else if (springRoll.checked) {
-    totalCost = 80;
-    mealName = "Spring Roll";
-  } else if (fries.checked) {
-    totalCost = 50;
-    mealName = "Fries";
-  }
+    // 3. Tax Calculation
+    const tax = subtotal * 0.05;
+    const total = subtotal + tax;
 
-  // 2. Calculate Add-ons (Checkboxes)
-  if (coke.checked) {
-    totalCost += 30;
-    addonsList += "Coke<br>";
-  }
-  if (mirinda.checked) {
-    totalCost += 30;
-    addonsList += "Mirinda<br>";
-  }
+    // 4. Update UI
+    document.getElementById("lblName").innerText = name || "---";
+    document.getElementById("lblMobile").innerText = mobile || "---";
+    document.getElementById("lblMeal").innerText = mealName;
+    document.getElementById("lblAdd").innerHTML = addons.length > 0 ? addons.join(", ") : "None";
+    
+    document.getElementById("lblSubtotal").innerText = "৳" + subtotal;
+    document.getElementById("lblTax").innerText = "৳" + tax.toFixed(2);
+    document.getElementById("lblAmount").innerText = "৳" + total.toFixed(2);
 
-  // 3. Update the UI
-  document.getElementById("lblName").innerHTML = uname || "---";
-  document.getElementById("lblMobile").innerHTML = mobile || "---";
-  document.getElementById("lblMeal").innerHTML = mealName;
-  document.getElementById("lblAdd").innerHTML = addonsList || "No Add-ons";
-  document.getElementById("lblAmount").innerHTML = "৳" + totalCost;
-
-  const printBtn = document.querySelector('input[value="Print Bill"]');
-  if (uname.trim() !== "" && totalCost > 0) {
-    printBtn.disabled = false;
-  } else {
-    printBtn.disabled = true;
-  }
+    // 5. Validation for Print Button
+    const btn = document.getElementById("btnPrint");
+    if (name.trim() !== "" && subtotal > 0) {
+        btn.disabled = false;
+        btn.classList.replace("btn-secondary", "btn-success");
+    } else {
+        btn.disabled = true;
+        btn.classList.replace("btn-success", "btn-secondary");
+    }
 }
