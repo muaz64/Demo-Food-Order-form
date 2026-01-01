@@ -35,42 +35,45 @@
                         <td><input type="text" class="form-control" id="txtMobile"></td>
                     </tr>
                 </table>
+
                    <!-- Your meal selection rows -->
+
         <div class="row">
            <div class="col-md-12">
            <h5 class="text-dark fw-bold">Select a Meal</h5>
         </div>
     </div>
-    <div class="row">
-       <div class="col-md-4">
+    <div class="row" oninput="placeOrder()">
+    <div class="col-md-4">
         <div class="form-check">
-            <img src="burger.jpeg" width="100" height="100" alt="">
-            <input class="form-check-input" type="radio" name="meal" id="optBurger" value="omgBurger">
-            <label class="form-check-label text-dark fw-bold"for="optBurger">
-                Burger (&#2547;120/-)
+            <img src="burger.jpeg" width="100" height="100" class="rounded mb-2" alt="Burger">
+            <input class="form-check-input" type="radio" name="meal" id="optBurger" value="Burger">
+            <label class="form-check-label text-dark fw-bold" for="optBurger">
+                Burger (৳120/-)
             </label>          
         </div>
     </div>
+
     <div class="col-md-4">
         <div class="form-check">
-            <img src="Spring Roll.jpeg" width="100" height="100" alt="">
-            <input class="form-check-input" type="radio" name="meal" id="optSproll" value="omgSproll">
+            <img src="Spring Roll.jpeg" width="100" height="100" class="rounded mb-2" alt="Spring Roll">
+            <input class="form-check-input" type="radio" name="meal" id="optSproll" value="Spring Roll">
             <label class="form-check-label text-dark fw-bold" for="optSproll">
-                Spring Roll (&#2547;80/-)
+                Spring Roll (৳80/-)
             </label>
         </div>
     </div>
+
     <div class="col-md-4">
         <div class="form-check">
-            <img src="fries.jpeg" width="100" height="100" alt="">
-            <input class="form-check-input" type="radio" id="optfries" value="largeFries">
+            <img src="fries.jpeg" width="100" height="100" class="rounded mb-2" alt="Fries">
+            <input class="form-check-input" type="radio" name="meal" id="optfries" value="Fries">
             <label class="form-check-label text-dark fw-bold" for="optfries">
-                Fries (&#2547;50/-)
+                Fries (৳50/-)
             </label>
         </div>
     </div>
 </div>
-<br><br>
 <!-- Your add-on selection rows -->
 <div class="row">
     <div class="col-md-12">
