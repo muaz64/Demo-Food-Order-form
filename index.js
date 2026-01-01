@@ -1,50 +1,48 @@
 function placeOrder() {
+    // Show summary as soon as user interacts
     document.getElementById("orderSummary").style.display = "block";
 
-    var uname = document.getElementById("txtName");
-    var mobile = document.getElementById("txtMobile");
+    // Select Elements
+    var uname = document.getElementById("txtName").value;
+    var mobile = document.getElementById("txtMobile").value;
+    
     var burger = document.getElementById("optBurger");
     var springRoll = document.getElementById("optSproll");
     var fries = document.getElementById("optfries");
+    
     var coke = document.getElementById("optcoke");
     var mirinda = document.getElementById("optmirinda");
 
-    var mcost = 0;
-    var acost = 0;
-    var mname = "";
-    var aname = "";
+    var totalCost = 0;
+    var mealName = "None Selected";
+    var addonsList = "";
 
-    // Checking meal options
+    // 1. Calculate Meal Cost (Radio Buttons)
     if (burger.checked) {
-        mcost += 120;
-        mname = burger.value;
-    }
-    if (springRoll.checked) {
-        mcost += 80;
-        mname = springRoll.value;
-    }
-    if (fries.checked) {
-        mcost += 50;
-        mname = fries.value;
+        totalCost = 120;
+        mealName = "Burger";
+    } else if (springRoll.checked) {
+        totalCost = 80;
+        mealName = "Spring Roll";
+    } else if (fries.checked) {
+        totalCost = 50;
+        mealName = "Fries";
     }
 
-    // Checking add-ons
+    // 2. Calculate Add-ons (Checkboxes)
     if (coke.checked) {
-        acost += 30;
-        aname += coke.value + "<br>";
+        totalCost += 30;
+        addonsList += "Coke<br>";
     }
     if (mirinda.checked) {
-        acost += 30;
-        aname += mirinda.value + "<br>";
+        totalCost += 30;
+        addonsList += "Mirinda<br>";
     }
 
-    // Adding add-on cost to total meal cost
-    mcost += acost;
-
-    // Displaying order summary
-    document.getElementById("lblName").innerHTML = uname.value;
-    document.getElementById("lblMobile").innerHTML = mobile.value;
-    document.getElementById("lblMeal").innerHTML = mname;
-    document.getElementById("lblAdd").innerHTML = aname;
-    document.getElementById("lblAmount").innerHTML = mcost;
+    // 3. Update the UI
+    document.getElementById("lblName").innerHTML = uname || "---";
+    document.getElementById("lblMobile").innerHTML = mobile || "---";
+    document.getElementById("lblMeal").innerHTML = mealName;
+    document.getElementById("lblAdd").innerHTML = addonsList || "No Add-ons";
+    document.getElementById("lblAmount").innerHTML = "৳" + totalCost;
 }
