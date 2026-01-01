@@ -1,39 +1,99 @@
+/* 1. Global Theme */
 body {
     background-color: rgba(114, 198, 219, 0.432);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    padding-bottom: 50px;
 }
 
-h1 { color: #2c3e50; }
+h1 {
+    color: #2c3e50;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* 2. Interactive Item Cards */
+.item-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid #dee2e6 !important;
+}
+
+.item-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
+    border-color: #0dcaf0 !important;
+    background-color: #f8fdff !important;
+}
+
+/* Styling the Checkbox and Label */
+.form-check-input {
+    cursor: pointer;
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.form-check-label {
+    cursor: pointer;
+    padding-left: 5px;
+}
+
+/* 3. Quantity Input Styling */
+input[type="number"] {
+    text-align: center;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+input[type="number"]:focus {
+    border-color: #0dcaf0;
+    box-shadow: 0 0 0 0.2rem rgba(13, 202, 240, 0.25);
+}
+
+/* 4. Sticky Receipt Card */
+#orderSummary {
+    border-top: 5px solid #0dcaf0 !important;
+    max-height: 90vh;
+    overflow-y: auto;
+}
 
 dt {
-    font-weight: bold;
-    color: #555;
-    margin-top: 5px;
+    font-size: 0.8rem;
+    color: #6c757d;
+    text-transform: uppercase;
+    margin-top: 10px;
 }
 
-/* Print Logic */
+dd {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+/* 5. Professional Print Layout */
 @media print {
-  
+    /* Hide the entire web interface */
     body * {
         visibility: hidden;
     }
 
-    
+    /* Show only the Receipt area */
     #orderSummary, #orderSummary * {
         visibility: visible;
     }
 
+    /* Position receipt at top of page */
     #orderSummary {
         position: absolute;
         left: 0;
         top: 0;
         width: 100%;
-        border: 1px solid #eee;
-        box-shadow: none;
+        border: 1px solid #000 !important;
+        box-shadow: none !important;
+        padding: 0 !important;
     }
 
-   
-    #btnPrint {
+    /* Hide the Print and Reset buttons on paper */
+    .btn, .btn-outline-danger {
         display: none !important;
     }
 }
