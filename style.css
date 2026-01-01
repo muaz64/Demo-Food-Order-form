@@ -12,3 +12,24 @@ dt{
     background-color: rgb(224, 171, 171);
     color: rgb(0, 0, 0);
 }
+@media print {
+
+    body * {
+        visibility: hidden;
+    }
+
+    #orderSummary, #orderSummary * {
+        visibility: visible;
+    }
+    #orderSummary {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        border: none;
+        padding: 20px;
+    }
+    .btn-secondary, .btn-info {
+        display: none !important;
+    }
+}
